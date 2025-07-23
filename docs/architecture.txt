@@ -1,0 +1,63 @@
+qliq_ai_assistant/
+│
+├── app/                        # FastAPI entrypoint and dependency injection
+│   ├── main.py
+│   └── dependencies.py
+│
+├── domain/                     # Business logic (pure Python, no frameworks)
+│   ├── models/
+│   │   ├── user.py
+│   │   ├── product.py
+│   │   └── gig.py
+│   ├── services/
+│   │   ├── onboarding_service.py
+│   │   ├── recommendation_service.py
+│   │   └── query_classifier.py
+│   └── repositories/           # Interface (abstract base classes)
+│       ├── user_repo.py
+│       ├── product_repo.py
+│       └── gig_repo.py
+│
+├── application/                # Use cases / orchestration logic
+│   ├── onboarding.py
+│   ├── recommendations.py
+│   └── query_handler.py
+│
+├── infrastructure/             # Tech-specific implementations
+│   ├── vector_db/              # Pinecone, FAISS, etc.
+│   │   ├── pinecone_client.py
+│   │   └── embedding_service.py
+│   ├── ml/                     # ML model, training, evaluation
+│   │   ├── classifier.py
+│   │   └── trainer.py
+│   └── repositories/           # JSON or DB-backed implementations
+│       ├── user_repo_json.py
+│       ├── product_repo_json.py
+│       └── gig_repo_json.py
+│
+├── interface/                  # FastAPI route definitions
+│   ├── api/
+│   │   ├── onboarding.py
+│   │   ├── ask.py
+│   │   ├── recommend.py
+│   │   └── health.py
+│   └── schemas/                # Pydantic models for requests/responses
+│       ├── user_schema.py
+│       ├── product_schema.py
+│       ├── gig_schema.py
+│       └── onboarding_schema.py
+│
+├── tests/
+│   ├── unit/
+│   └── integration/
+│
+├── data/                       # JSON mock data
+│
+├── models/                     # Saved ML models
+│
+├── static/                     # Optional frontend UI
+│
+├── .env
+├── requirements.txt
+├── README.md
+└── pyproject.toml (optional)

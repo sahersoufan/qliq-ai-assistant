@@ -1,0 +1,1 @@
+# Gig repository interface (abstract base class)

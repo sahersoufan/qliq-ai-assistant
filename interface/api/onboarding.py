@@ -1,0 +1,1 @@
+# FastAPI route definitions for onboarding

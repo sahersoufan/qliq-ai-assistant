@@ -1,0 +1,1 @@
+# Pydantic models for product requests/responses

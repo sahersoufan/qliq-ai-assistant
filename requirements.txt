@@ -1,0 +1,29 @@
+# Core Framework
+fastapi
+uvicorn[standard]
+
+# LLM & RAG
+langchain
+boto3                      # For AWS Bedrock
+botocore
+sagemaker                 # Optional, for other AWS use cases
+chromadb
+
+# Embeddings
+sentence-transformers
+
+# ML
+scikit-learn
+pandas
+numpy
+
+# Data validation
+pydantic
+
+# Logging & Monitoring
+loguru
+python-dotenv
+
+# Dev & Testing
+httpx
+pytest
