@@ -1,10 +1,10 @@
 # Core Framework
-fastapi
-uvicorn[standard]
+fastapi~=0.116.1
+uvicorn[standard]~=0.35.0
 
 # LLM & RAG
-langchain
-boto3                      # For AWS Bedrock
+langchain~=0.3.26
+boto3~=1.39.11
 botocore
 sagemaker                 # Optional, for other AWS use cases
 chromadb
@@ -18,12 +18,18 @@ pandas
 numpy
 
 # Data validation
-pydantic
+pydantic~=2.11.7
 
 # Logging & Monitoring
-loguru
-python-dotenv
+loguru~=0.7.3
+python-dotenv~=1.1.1
 
 # Dev & Testing
 httpx
 pytest
+
+transformers~=4.53.3
+langchain-core~=0.3.72
+langchain-community~=0.3.27
+langchain-aws~=0.2.29
+langgraph~=0.5.4
