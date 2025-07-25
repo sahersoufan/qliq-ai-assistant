@@ -1,14 +1,16 @@
 # infrastructure/llm/bedrock_client.py
-
 import os
 
-from langchain.schema import HumanMessage
+from dotenv import load_dotenv
 from langchain_aws.chat_models.bedrock import ChatBedrock
+from langchain_core.messages import HumanMessage
 
+load_dotenv()
 
 def get_bedrock_llm():
     region = os.getenv("AWS_REGION", "us-east-1")
     model_id = os.getenv("BEDROCK_MODEL_ID", "anthropic.claude-v2")
+    print(region, model_id)
 
     # Initialize LangChain's BedrockChat model
     llm = ChatBedrock(
