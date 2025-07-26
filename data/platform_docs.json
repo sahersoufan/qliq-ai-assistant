@@ -1,0 +1,302 @@
+[
+  {
+    "id": "doc_001",
+    "category": "Policy",
+    "title": "Data Privacy",
+    "content": "We protect your data with end-to-end encryption and never sell it."
+  },
+  {
+    "id": "doc_002",
+    "category": "Policy",
+    "title": "Community Guidelines",
+    "content": "Users must respect each other and avoid offensive language."
+  },
+  {
+    "id": "doc_003",
+    "category": "How-To Guide",
+    "title": "How to accept a gig",
+    "content": "Click on a gig you're interested in and press 'Accept'."
+  },
+  {
+    "id": "doc_004",
+    "category": "How-To Guide",
+    "title": "How to set up your profile",
+    "content": "Click on your avatar and select 'Edit Profile' to add bio, skills, and more."
+  },
+  {
+    "id": "doc_005",
+    "category": "How-To Guide",
+    "title": "How to invite friends",
+    "content": "Use your referral link found under the 'Refer & Earn' tab."
+  },
+  {
+    "id": "doc_006",
+    "category": "How-To Guide",
+    "title": "How to upload a product",
+    "content": "Go to the 'Products' tab, click 'Add Product', and fill in the details."
+  },
+  {
+    "id": "doc_007",
+    "category": "How-To Guide",
+    "title": "How to upload a product",
+    "content": "Go to the 'Products' tab, click 'Add Product', and fill in the details."
+  },
+  {
+    "id": "doc_008",
+    "category": "How-To Guide",
+    "title": "How to set up your profile",
+    "content": "Click on your avatar and select 'Edit Profile' to add bio, skills, and more."
+  },
+  {
+    "id": "doc_009",
+    "category": "Policy",
+    "title": "Terms of Service",
+    "content": "By using QLIQ, you agree to our usage rules and payment structure."
+  },
+  {
+    "id": "doc_010",
+    "category": "How-To Guide",
+    "title": "How to top up Qoyns",
+    "content": "Navigate to Wallet > Top Up and choose a payment method."
+  },
+  {
+    "id": "doc_011",
+    "category": "Policy",
+    "title": "Content Moderation",
+    "content": "Content violating our rules will be removed without notice."
+  },
+  {
+    "id": "doc_012",
+    "category": "FAQ",
+    "title": "What are Qoyns?",
+    "content": "Qoyns are platform credits you can earn or spend on services."
+  },
+  {
+    "id": "doc_013",
+    "category": "FAQ",
+    "title": "Is there a mobile app?",
+    "content": "Yes, the QLIQ app is available on Android and iOS."
+  },
+  {
+    "id": "doc_014",
+    "category": "FAQ",
+    "title": "How do I reset my password?",
+    "content": "Go to the login page, click 'Forgot Password', and follow the instructions."
+  },
+  {
+    "id": "doc_015",
+    "category": "How-To Guide",
+    "title": "How to top up Qoyns",
+    "content": "Navigate to Wallet > Top Up and choose a payment method."
+  },
+  {
+    "id": "doc_016",
+    "category": "How-To Guide",
+    "title": "How to upload a product",
+    "content": "Go to the 'Products' tab, click 'Add Product', and fill in the details."
+  },
+  {
+    "id": "doc_017",
+    "category": "FAQ",
+    "title": "How do I delete my account?",
+    "content": "Visit your account settings and click 'Delete Account'."
+  },
+  {
+    "id": "doc_018",
+    "category": "How-To Guide",
+    "title": "How to accept a gig",
+    "content": "Click on a gig you're interested in and press 'Accept'."
+  },
+  {
+    "id": "doc_019",
+    "category": "How-To Guide",
+    "title": "How to upload a product",
+    "content": "Go to the 'Products' tab, click 'Add Product', and fill in the details."
+  },
+  {
+    "id": "doc_020",
+    "category": "FAQ",
+    "title": "Can I change my user type later?",
+    "content": "Yes, you can update your role from your profile settings."
+  },
+  {
+    "id": "doc_021",
+    "category": "FAQ",
+    "title": "How do I delete my account?",
+    "content": "Visit your account settings and click 'Delete Account'."
+  },
+  {
+    "id": "doc_022",
+    "category": "How-To Guide",
+    "title": "How to invite friends",
+    "content": "Use your referral link found under the 'Refer & Earn' tab."
+  },
+  {
+    "id": "doc_023",
+    "category": "Policy",
+    "title": "Data Privacy",
+    "content": "We protect your data with end-to-end encryption and never sell it."
+  },
+  {
+    "id": "doc_024",
+    "category": "How-To Guide",
+    "title": "How to upload a product",
+    "content": "Go to the 'Products' tab, click 'Add Product', and fill in the details."
+  },
+  {
+    "id": "doc_025",
+    "category": "FAQ",
+    "title": "Can I change my user type later?",
+    "content": "Yes, you can update your role from your profile settings."
+  },
+  {
+    "id": "doc_026",
+    "category": "FAQ",
+    "title": "How do I reset my password?",
+    "content": "Go to the login page, click 'Forgot Password', and follow the instructions."
+  },
+  {
+    "id": "doc_027",
+    "category": "Policy",
+    "title": "Terms of Service",
+    "content": "By using QLIQ, you agree to our usage rules and payment structure."
+  },
+  {
+    "id": "doc_028",
+    "category": "FAQ",
+    "title": "Is there a mobile app?",
+    "content": "Yes, the QLIQ app is available on Android and iOS."
+  },
+  {
+    "id": "doc_029",
+    "category": "Policy",
+    "title": "Terms of Service",
+    "content": "By using QLIQ, you agree to our usage rules and payment structure."
+  },
+  {
+    "id": "doc_030",
+    "category": "How-To Guide",
+    "title": "How to upload a product",
+    "content": "Go to the 'Products' tab, click 'Add Product', and fill in the details."
+  },
+  {
+    "id": "doc_031",
+    "category": "Policy",
+    "title": "Terms of Service",
+    "content": "By using QLIQ, you agree to our usage rules and payment structure."
+  },
+  {
+    "id": "doc_032",
+    "category": "Policy",
+    "title": "Refund Policy",
+    "content": "All refunds must be requested within 7 days of purchase."
+  },
+  {
+    "id": "doc_033",
+    "category": "FAQ",
+    "title": "Is there a mobile app?",
+    "content": "Yes, the QLIQ app is available on Android and iOS."
+  },
+  {
+    "id": "doc_034",
+    "category": "Policy",
+    "title": "Content Moderation",
+    "content": "Content violating our rules will be removed without notice."
+  },
+  {
+    "id": "doc_035",
+    "category": "Policy",
+    "title": "Content Moderation",
+    "content": "Content violating our rules will be removed without notice."
+  },
+  {
+    "id": "doc_036",
+    "category": "Policy",
+    "title": "Content Moderation",
+    "content": "Content violating our rules will be removed without notice."
+  },
+  {
+    "id": "doc_037",
+    "category": "How-To Guide",
+    "title": "How to top up Qoyns",
+    "content": "Navigate to Wallet > Top Up and choose a payment method."
+  },
+  {
+    "id": "doc_038",
+    "category": "How-To Guide",
+    "title": "How to upload a product",
+    "content": "Go to the 'Products' tab, click 'Add Product', and fill in the details."
+  },
+  {
+    "id": "doc_039",
+    "category": "FAQ",
+    "title": "What are Qoyns?",
+    "content": "Qoyns are platform credits you can earn or spend on services."
+  },
+  {
+    "id": "doc_040",
+    "category": "FAQ",
+    "title": "Can I change my user type later?",
+    "content": "Yes, you can update your role from your profile settings."
+  },
+  {
+    "id": "doc_041",
+    "category": "Policy",
+    "title": "Terms of Service",
+    "content": "By using QLIQ, you agree to our usage rules and payment structure."
+  },
+  {
+    "id": "doc_042",
+    "category": "Policy",
+    "title": "Data Privacy",
+    "content": "We protect your data with end-to-end encryption and never sell it."
+  },
+  {
+    "id": "doc_043",
+    "category": "Policy",
+    "title": "Terms of Service",
+    "content": "By using QLIQ, you agree to our usage rules and payment structure."
+  },
+  {
+    "id": "doc_044",
+    "category": "Policy",
+    "title": "Terms of Service",
+    "content": "By using QLIQ, you agree to our usage rules and payment structure."
+  },
+  {
+    "id": "doc_045",
+    "category": "FAQ",
+    "title": "How do I delete my account?",
+    "content": "Visit your account settings and click 'Delete Account'."
+  },
+  {
+    "id": "doc_046",
+    "category": "How-To Guide",
+    "title": "How to set up your profile",
+    "content": "Click on your avatar and select 'Edit Profile' to add bio, skills, and more."
+  },
+  {
+    "id": "doc_047",
+    "category": "How-To Guide",
+    "title": "How to set up your profile",
+    "content": "Click on your avatar and select 'Edit Profile' to add bio, skills, and more."
+  },
+  {
+    "id": "doc_048",
+    "category": "FAQ",
+    "title": "Can I change my user type later?",
+    "content": "Yes, you can update your role from your profile settings."
+  },
+  {
+    "id": "doc_049",
+    "category": "How-To Guide",
+    "title": "How to invite friends",
+    "content": "Use your referral link found under the 'Refer & Earn' tab."
+  },
+  {
+    "id": "doc_050",
+    "category": "FAQ",
+    "title": "What are Qoyns?",
+    "content": "Qoyns are platform credits you can earn or spend on services."
+  }
+]

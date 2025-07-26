@@ -1,7 +1,6 @@
 # domain/services/onboarding_service.py
 import json
 import traceback
-from pprint import pprint
 
 from langchain.agents import create_tool_calling_agent
 from langchain.agents.agent import AgentExecutor
@@ -68,7 +67,7 @@ class OnboardingService:
 
     def get_summary(self, user_profile: dict) -> str:
         user_profile = json.loads(str(user_profile))
-        pprint(user_profile)
+
         name = user_profile.get("name", "there")
         role = user_profile.get("type", "a user")
         interests = ", ".join(user_profile.get("interests", []))

@@ -1,1 +1,0 @@
-# Pinecone vector database client implementation
