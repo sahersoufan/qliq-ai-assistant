@@ -10,6 +10,10 @@ DATA_PATH = Path(__file__).resolve().parents[2] / "data"
 CHROMA_PATH = Path("chroma_db/users")
 COLLECTION_NAME = "qliq-users"
 
+import shutil
+
+if CHROMA_PATH.exists():
+    shutil.rmtree(CHROMA_PATH)
 
 def load_users() -> list[dict]:
     path = DATA_PATH / "users.json"

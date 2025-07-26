@@ -10,6 +10,10 @@ DATA_PATH = Path(__file__).resolve().parents[2] / "data"
 CHROMA_PATH = Path("chroma_db/gigs")
 COLLECTION_NAME = "qliq-gigs"
 
+import shutil
+
+if CHROMA_PATH.exists():
+    shutil.rmtree(CHROMA_PATH)
 
 def load_gigs() -> list[dict]:
     path = DATA_PATH / "gigs.json"

@@ -14,6 +14,10 @@ DATA_PATH = BASE_DIR / "data"
 CHROMA_PATH = BASE_DIR / "app" / "chroma_db"
 EMBED_MODEL_NAME = "all-MiniLM-L6-v2"
 
+import shutil
+
+if CHROMA_PATH.exists():
+    shutil.rmtree(CHROMA_PATH)
 
 def _save_collection(documents: list[Document], collection_name: str):
     embeddings = SentenceTransformerEmbeddings(model_name=EMBED_MODEL_NAME)

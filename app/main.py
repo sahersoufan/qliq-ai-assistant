@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from infrastructure.logging import logger
 from infrastructure.middleware.logging_middleware import SimpleLoggingMiddleware
@@ -23,6 +24,15 @@ app = FastAPI(title="QLIQ AI Assistant", lifespan=lifespan)
 
 # Add middleware
 app.add_middleware(SimpleLoggingMiddleware)
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Frontend origin
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 # Register Routers
 app.include_router(health.router, prefix="/health", tags=["Health"])
