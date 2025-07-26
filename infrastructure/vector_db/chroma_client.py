@@ -11,11 +11,55 @@ from domain.utils.metadata_cleaner import clean_metadata
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 DATA_PATH = BASE_DIR / "data"
-CHROMA_PATH = Path("chroma_db")
-EMBED_MODEL_NAME = "all-MiniLM-L6-v2"  # Good balance of speed and quality
+CHROMA_PATH = BASE_DIR / "app" / "chroma_db"
+EMBED_MODEL_NAME = "all-MiniLM-L6-v2"
 
 
-def load_gig_documents() -> list[Document]:
+def _save_collection(documents: list[Document], collection_name: str):
+    embeddings = SentenceTransformerEmbeddings(model_name=EMBED_MODEL_NAME)
+    Chroma.from_documents(
+        documents=documents,
+        embedding=embeddings,
+        persist_directory=str(CHROMA_PATH),
+        collection_name=collection_name
+    )
+    print(f"Saved collection '{collection_name}' with {len(documents)} documents.")
+
+
+def build_all_collections():
+    _save_collection(load_gig_documents(), "gigs")
+    _save_collection(load_product_documents(), "products")
+    _save_collection(load_faq_documents(), "faqs")
+    _save_collection(load_user_documents(), "users")  # optional: not used directly yet
+
+
+def _load_collection(collection_name: str):
+    embeddings = SentenceTransformerEmbeddings(model_name=EMBED_MODEL_NAME)
+    return Chroma(
+        persist_directory=str(CHROMA_PATH),
+        embedding_function=embeddings,
+        collection_name=collection_name
+    )
+
+
+def load_gig_retriever():
+    return _load_collection("gigs").as_retriever()
+
+
+def load_product_retriever():
+    return _load_collection("products").as_retriever()
+
+
+def load_faq_retriever():
+    return _load_collection("faqs").as_retriever()
+
+
+def load_general_retriever():
+    return _load_collection("gigs").as_retriever()  # fallback for now
+
+
+# Individual loaders for each data type
+def load_gig_documents():
     path = DATA_PATH / "gigs.json"
     documents = []
     if path.exists():
@@ -33,7 +77,7 @@ Skills Required: {", ".join(item.get("skills_required", []))}"""
     return documents
 
 
-def load_product_documents() -> list[Document]:
+def load_product_documents():
     path = DATA_PATH / "products.json"
     documents = []
     if path.exists():
@@ -52,7 +96,7 @@ Seller Type: {item.get("seller_type")}"""
     return documents
 
 
-def load_user_documents() -> list[Document]:
+def load_user_documents():
     path = DATA_PATH / "users.json"
     documents = []
     if path.exists():
@@ -75,7 +119,7 @@ Network Size: {item.get("network_size")}"""
     return documents
 
 
-def load_platform_doc_documents() -> list[Document]:
+def load_platform_doc_documents():
     path = DATA_PATH / "platform_docs.json"
     documents = []
     if path.exists():
@@ -92,7 +136,7 @@ Content: {item.get("content")}"""
     return documents
 
 
-def load_user_guide_documents() -> list[Document]:
+def load_user_guide_documents():
     path = DATA_PATH / "user_guides.json"
     documents = []
     if path.exists():
@@ -109,42 +153,5 @@ Content: {item.get("content")}"""
     return documents
 
 
-def load_documents() -> list[Document]:
-    return (
-            load_gig_documents()
-            + load_product_documents()
-            + load_user_documents()
-            + load_platform_doc_documents()
-            + load_user_guide_documents()
-    )
-
-
-def split_documents(docs: list[Document]) -> list[Document]:
-    return docs  # No splitting for short documents
-
-
-def build_chroma_index():
-    docs = load_documents()
-    chunks = split_documents(docs)
-    embeddings = SentenceTransformerEmbeddings(model_name=EMBED_MODEL_NAME)
-
-    vectorstore = Chroma.from_documents(
-        documents=chunks,
-        embedding=embeddings,
-        persist_directory=str(CHROMA_PATH),
-        collection_name="qliq-docs"
-    )
-
-    print(f"Chroma DB saved to {CHROMA_PATH.resolve()} with {len(chunks)} chunks.")
-
-    return vectorstore
-
-
-def load_chroma() -> Chroma:
-    embeddings = SentenceTransformerEmbeddings(model_name=EMBED_MODEL_NAME)
-
-    if not CHROMA_PATH.exists() or not any(CHROMA_PATH.glob("*.sqlite")):
-        print("Chroma DB not found. Building index...")
-        return build_chroma_index()
-
-    return Chroma(persist_directory=str(CHROMA_PATH), embedding_function=embeddings)
+def load_faq_documents():
+    return load_platform_doc_documents() + load_user_guide_documents()
