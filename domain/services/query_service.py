@@ -10,6 +10,7 @@ from infrastructure.vector_db.chroma_client import (
     load_gig_retriever,
 )
 from domain.services.query_classifier_service import QueryClassifierService
+from infrastructure.logging import logger
 
 
 QA_TEMPLATE = """
@@ -41,35 +42,95 @@ User message:
 
 class QueryService:
     def __init__(self, classifier: QueryClassifierService):
-        self.llm = get_bedrock_llm()
-        self.classifier = classifier
-        self.retrievers = {
-            "FAQ": load_faq_retriever(),
-            "Product": load_product_retriever(),
-            "Gig": load_gig_retriever(),
-        }
-        self.general_chain = LLMChain(
-            llm=self.llm,
-            prompt=PromptTemplate.from_template(GENERAL_PROMPT_TEMPLATE)
-        )
+        try:
+            self.llm = get_bedrock_llm()
+            self.classifier = classifier
+            
+            # Initialize retrievers with error handling
+            self.retrievers = {}
+            try:
+                self.retrievers["FAQ"] = load_faq_retriever()
+                logger.info("FAQ retriever loaded successfully")
+            except Exception as e:
+                logger.error(f"Failed to load FAQ retriever: {str(e)}")
+                
+            try:
+                self.retrievers["Product"] = load_product_retriever()
+                logger.info("Product retriever loaded successfully")
+            except Exception as e:
+                logger.error(f"Failed to load Product retriever: {str(e)}")
+                
+            try:
+                self.retrievers["Gig"] = load_gig_retriever()
+                logger.info("Gig retriever loaded successfully")
+            except Exception as e:
+                logger.error(f"Failed to load Gig retriever: {str(e)}")
+                
+            # Initialize general chain
+            try:
+                self.general_chain = LLMChain(
+                    llm=self.llm,
+                    prompt=PromptTemplate.from_template(GENERAL_PROMPT_TEMPLATE)
+                )
+                logger.info("General chain initialized successfully")
+            except Exception as e:
+                logger.error(f"Failed to initialize general chain: {str(e)}")
+                raise RuntimeError(f"Failed to initialize general chain: {str(e)}")
+                
+        except Exception as e:
+            logger.error(f"Error initializing QueryService: {str(e)}")
+            raise
 
     def ask(self, question: str) -> str:
-        label = self.classifier.predict(question)
-        print(label)
-        if label == "General":
-            result = self.general_chain.run({"question": question})
-            return result
+        if not question or not isinstance(question, str):
+            logger.warning(f"Invalid question input: {question}")
+            return "I couldn't understand your question. Please try again with a clear question."
+            
+        try:
+            # Get classification label
+            try:
+                label = self.classifier.predict(question)
+                logger.info(f"Query classified as: {label}")
+            except Exception as e:
+                logger.error(f"Error classifying query: {str(e)}")
+                label = "General"  # Default to general if classification fails
+                
+            # Handle general queries
+            if label == "General":
+                try:
+                    result = self.general_chain.run({"question": question})
+                    return result
+                except Exception as e:
+                    logger.error(f"Error processing general query: {str(e)}")
+                    return "I'm having trouble processing your request. Please try again later."
 
-        retriever = self.retrievers.get(label)
+            # Get appropriate retriever
+            retriever = self.retrievers.get(label)
+            if not retriever:
+                logger.error(f"No retriever found for label: {label}")
+                return "I'm having trouble finding information on that topic. Please try a different question."
 
-        qa_chain = ConversationalRetrievalChain.from_llm(
-            llm=self.llm,
-            retriever=retriever,
-            condense_question_prompt=PromptTemplate.from_template(QA_TEMPLATE),
-            combine_docs_chain_kwargs={"prompt": PromptTemplate.from_template(QA_TEMPLATE)},
-            return_source_documents=True
-        )
-
-        result = qa_chain({"question": question, "chat_history": []})
-        print("RETRIEVED CHUNKS:\n", [doc.page_content for doc in result["source_documents"]])
-        return result.get("answer", "I'm not sure based on the available information.")
+            # Create and run QA chain
+            try:
+                qa_chain = ConversationalRetrievalChain.from_llm(
+                    llm=self.llm,
+                    retriever=retriever,
+                    condense_question_prompt=PromptTemplate.from_template(QA_TEMPLATE),
+                    combine_docs_chain_kwargs={"prompt": PromptTemplate.from_template(QA_TEMPLATE)},
+                    return_source_documents=True
+                )
+                
+                result = qa_chain({"question": question, "chat_history": []})
+                
+                # Log retrieved chunks for debugging
+                chunks = [doc.page_content for doc in result["source_documents"]]
+                logger.debug(f"Retrieved {len(chunks)} chunks for query")
+                
+                return result.get("answer", "I'm not sure based on the available information.")
+            except Exception as e:
+                logger.error(f"Error in QA chain: {str(e)}")
+                return "I encountered an issue while searching for your answer. Please try again later."
+                
+        except Exception as e:
+            logger.error(f"Unexpected error processing query: {str(e)}")
+            return "I'm sorry, something went wrong. Please try again later."
