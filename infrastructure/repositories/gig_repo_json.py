@@ -1,1 +1,0 @@
-# JSON-backed implementation of gig repository

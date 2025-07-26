@@ -1,0 +1,109 @@
+I applied for a job role for ai developer an they ask me to do a simple project that needs 5 days to finish it they give me a file it is attached has all the instruction to build the project and a summary of the instructions are below.
+
+summary of the project instruction:
+"""
+Project Summary: QLIQ – AI Developer Job Test
+Duration: 5 days (120 hours)
+Goal: Build a functional AI Assistant using LLMs and Vector DB for onboarding, query answering, and personalized recommendations.
+Core Features:
+Conversational Onboarding
+LLM-based assistant to gather user type, goals, and interests
+Generates personalized onboarding summary
+Supports inappropriate content filtering (bonus: Arabic support)
+RAG-Powered Query Answering
+Uses a Vector DB (e.g., FAISS, Pinecone) for contextual retrieval
+Handles queries about platform features, usage, and content
+Uses LLMs (OpenAI, Cohere, etc.) for final responses
+Embedding-Based Recommendations
+Suggests products, gigs, and users based on profile embeddings
+
+Adapts to role (Vendor, Influencer, Buyer) and user behavior
+
+Basic bias detection included
+
+Custom Query Classifier (ML Component)
+
+Classifies user queries (FAQ, Product, Gig, General)
+
+Evaluated via accuracy, precision, recall
+
+Compared to keyword-based baseline
+
+API & Web Interface
+
+RESTful endpoints for onboarding, querying, recommendations
+
+Simple chat or form-based UI (HTML/JS or React)
+
+Includes health checks, metrics, and basic logging
+
+Data Requirements:
+Users: 30–50 mock profiles
+
+Products: 50–100 mock items
+
+Gigs: 30–50 mock opportunities
+
+Docs: FAQs, guides, policies, Qoyns usage
+
+Deliverables:
+✅ Live deployment (Vercel/Render/etc.)
+
+✅ GitHub repo with full code and README
+
+✅ API docs (Postman/Swagger)
+
+✅ Mock data files/scripts
+
+✅ Trained ML model with metrics
+
+✅ RAG pipeline and vector DB setup
+
+✅ Logging and bias/content filtering
+
+✅ AI ethics documentation
+
+Evaluation Criteria:
+Vector DB + RAG: 25%
+
+Recommendation Engine: 20%
+
+ML Model: 20%
+
+Conversational UX: 15%
+
+API & Interface: 10%
+
+Monitoring & Ethics: 10%
+
+Tech Stack (Suggested):
+LLMs: OpenAI, Claude, Mistral
+
+Vector DB: FAISS, Pinecone, Qdrant
+
+ML: scikit-learn, pandas, numpy
+
+Backend: FastAPI
+
+Frontend: React/HTML+JS
+
+Hosting: Vercel, Render, HuggingFace Spaces
+
+Bonus (Optional):
+Image input, voice, A/B testing, real-time chat, advanced ML
+
+Success Tips:
+Prioritize working core features
+
+Use clean, testable mock data
+
+Document trade-offs and decisions
+
+Focus on explainability and ethics
+
+Objective: Demonstrate your ability to deliver a complete, ethical, and well-documented AI system, not a perfect product.
+"""
+the simple analysis to do it:
+"""
+Given that you need to complete this task in 5 days, and considering that Python isn't yet installed on your laptop, here's an optimized plan with a focus on core functionalities. This plan assumes you can work efficiently and have some experience with the tools required. The strategy will prioritize setting up quickly, working incrementally, and focusing on the essential parts of the task.Day 1: Setup and Initial PlanningInstall Necessary Tools:Python: Install Python and set up a virtual environment.Libraries: Install necessary libraries for the task (e.g., scikit-learn, transformers, fastapi, pandas, numpy, pinecone, sentence-transformers, etc.).Vector DB Setup: Set up a local or cloud-based vector DB (e.g., Pinecone or FAISS).Create GitHub Repo: Set up a GitHub repo and start organizing your work (README, directories for mock data, scripts).Understand Task Requirements:Focus on understanding the requirements for Conversational Onboarding, RAG Pipeline, and Recommendation Engine. These are the core parts of the task, so define what you're going to do first.Plan Mock Data:Begin structuring the mock data (users, products, gigs, and documentation). Create simple CSV or JSON files with at least 5-10 mock entries for each data type to start testing. Focus on simplicity for now (you can expand later if you have time).Initial Setup for API:Create the basic API skeleton using FastAPI (you’ll add endpoints later).Day 2: Conversational Onboarding and Basic RAG SetupConversational Onboarding:Set up a basic LLM-based onboarding assistant using GPT (OpenAI’s API) or a smaller local LLM.Focus on asking the key questions (user type, interests, goals) and generating a simple personalized summary.Add basic content filtering to handle inappropriate inputs.Implement the basic conversation flow: user type -> questions -> summary.Vector Database and RAG Pipeline:Set up the vector database (use Pinecone, Qdrant, or Chroma for simplicity). Index your mock data (e.g., products, gigs).Implement the basic RAG pipeline:Embed user queries (using something like SentenceTransformers or OpenAI embeddings).Retrieve relevant chunks from the vector DB.Use an LLM to generate responses.Mock Data Validation:Test the RAG pipeline by querying the system for simple questions like “Show me trending gigs in electronics” or “How can I use my Qoyns?”. Make sure it retrieves relevant data and generates reasonable responses.Day 3: Personalized Recommendations and IntegrationPersonalized Recommendations:Implement the recommendation engine:Use Cosine Similarity (or FAISS) to compare the user profile embeddings with product and gig embeddings.Provide personalized recommendations based on user interests, role, and previous interactions.API Development (Core Endpoints):POST /onboard: Takes user data, returns personalized onboarding summary.POST /ask: Takes a query, processes it using RAG, and responds with the appropriate answer.GET /recommendations/{user_id}: Returns personalized product/gig suggestions.Testing:Test each endpoint manually with Postman or via cURL.Make sure the API works with the mock data and generates responses based on user input.Day 4: ML Model and Web InterfaceML Model for Query Classification:Train a simple classification model (e.g., using scikit-learn):Train on a small dataset of labeled queries (FAQ, product, gig, general).Evaluate the model with accuracy, precision, recall.Compare its performance to keyword-based classification (simple regex or keyword matching).Web Interface:Build a simple React (or just HTML+JS) front-end interface for the assistant:Implement a basic chat interface or form for onboarding.Connect the front-end with the FastAPI backend to display results.Basic Deployment:Deploy the backend and front-end to a platform like Vercel or Render for quick access.Day 5: Final Testing, Documentation, and CleanupFinal Testing:Test all functionalities thoroughly:Ensure onboarding flows as expected.Test RAG queries and recommendations.Verify that the ML classification model is working properly.Logging and Monitoring:Implement basic logging (log API requests/responses, error handling, etc.).Make sure all critical operations (e.g., embeddings, RAG, recommendations) are logged for debugging.Documentation:Write API Documentation (Postman collection, Swagger, or a simple README).Ensure that your GitHub repository includes:Clear setup instructionsMock data files or generation scriptsLLM and vector DB configurationRAG pipeline implementation detailsModel training code and evaluation resultsBasic error handling and loggingAI ethics considerations document (e.g., bias mitigation, content filtering).Deployment:Ensure the app is deployed on Vercel, HuggingFace, or Render, with a live link provided.Success Tips:Focus on getting core functionalities working (onboarding, RAG, recommendations) and leave extra features for later.Test incrementally and fix issues as they come up.Don't get caught up in perfecting the UI; prioritize functional features.Keep your code and repo well-organized to make the review process easier for the company.By following this plan, you should be able to deliver a functional AI Assistant with core capabilities while ensuring the quality of your code, APIs, and model.
+"""

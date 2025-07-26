@@ -7,22 +7,12 @@ from langchain.schema.document import Document
 from langchain_chroma import Chroma
 from langchain_community.embeddings import SentenceTransformerEmbeddings
 
+from domain.utils.metadata_cleaner import clean_metadata
+
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 DATA_PATH = BASE_DIR / "data"
 CHROMA_PATH = Path("chroma_db")
 EMBED_MODEL_NAME = "all-MiniLM-L6-v2"  # Good balance of speed and quality
-
-
-def clean_metadata(metadata: dict) -> dict:
-    cleaned = {}
-    for k, v in metadata.items():
-        if isinstance(v, list):
-            cleaned[k] = ", ".join(map(str, v))
-        elif isinstance(v, (str, int, float, bool)) or v is None:
-            cleaned[k] = v
-        else:
-            cleaned[k] = str(v)
-    return cleaned
 
 
 def load_gig_documents() -> list[Document]:
@@ -101,6 +91,7 @@ Content: {item.get("content")}"""
                 ))
     return documents
 
+
 def load_user_guide_documents() -> list[Document]:
     path = DATA_PATH / "user_guides.json"
     documents = []
@@ -117,14 +108,16 @@ Content: {item.get("content")}"""
                 ))
     return documents
 
+
 def load_documents() -> list[Document]:
     return (
-        load_gig_documents()
-        + load_product_documents()
-        + load_user_documents()
-        + load_platform_doc_documents()
-        + load_user_guide_documents()
+            load_gig_documents()
+            + load_product_documents()
+            + load_user_documents()
+            + load_platform_doc_documents()
+            + load_user_guide_documents()
     )
+
 
 def split_documents(docs: list[Document]) -> list[Document]:
     return docs  # No splitting for short documents
@@ -155,16 +148,3 @@ def load_chroma() -> Chroma:
         return build_chroma_index()
 
     return Chroma(persist_directory=str(CHROMA_PATH), embedding_function=embeddings)
-
-
-if __name__ == "__main__":
-    retriever = load_chroma().as_retriever()
-    print(retriever.invoke("gigs related to graphic design"))
-
-# def split_documents(docs: list[Document]) -> list[Document]:
-#     splitter = RecursiveCharacterTextSplitter(
-#         chunk_size=500,
-#         chunk_overlap=100,
-#         separators=["\n\n", "\n", " ", ""]
-#     )
-#     return splitter.split_documents(docs)
