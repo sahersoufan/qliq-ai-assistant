@@ -6,4 +6,5 @@ requires-python = ">=3.13"
 dependencies = [
     "boto3-stubs==1.39.12",
     "langchain-community>=0.3.27",
+    "pandas-stubs==2.3.0.250703",
 ]

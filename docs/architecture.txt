@@ -1,63 +1,77 @@
-qliq_ai_assistant/
+qliq-ai-assistant/
 │
-├── app/                        # FastAPI entrypoint and dependency injection
+├── pyproject.toml
+├── README.md
+├── requirements.txt
+├── uv.lock
+│
+├── app/
 │   ├── main.py
-│   └── dependencies.py
+│   ├── chroma_db/
+│   │   ├── chroma.sqlite3
+│   │   ├── 3c0f0a80-5693-4dfe-ac24-3e7779fab2f1/
+│   │   ├── gigs/
+│   │   └── products/
+│   └── logs/
+│       └── app.log
 │
-├── domain/                     # Business logic (pure Python, no frameworks)
-│   ├── models/
-│   │   ├── user.py
-│   │   ├── product.py
-│   │   └── gig.py
+├── data/
+│   ├── gigs.json
+│   ├── platform_docs.json
+│   ├── products.json
+│   ├── users.json
+│   └── user_guides.json
+│
+├── docs/
+│   ├── architecture.txt
+│   ├── instructions.txt
+│   ├── QLIQ – AI Developer Job Test (Vector DB + LLMs).docx
+│   └── summary.txt
+│
+├── domain/
 │   ├── services/
+│   │   ├── embedding_formatter.py
 │   │   ├── onboarding_service.py
+│   │   ├── query_service.py
 │   │   ├── recommendation_service.py
-│   │   └── query_classifier.py
-│   └── repositories/           # Interface (abstract base classes)
-│       ├── user_repo.py
-│       ├── product_repo.py
-│       └── gig_repo.py
+│   │   └── store_registery.py
+│   └── utils/
+│       └── metadata_cleaner.py
 │
-├── application/                # Use cases / orchestration logic
-│   ├── onboarding.py
-│   ├── recommendations.py
-│   └── query_handler.py
-│
-├── infrastructure/             # Tech-specific implementations
-│   ├── vector_db/              # Pinecone, FAISS, etc.
-│   │   ├── pinecone_client.py
-│   │   └── embedding_service.py
-│   ├── ml/                     # ML model, training, evaluation
+├── infrastructure/
+│   ├── logging.py
+│   ├── llm/
+│   │   └── bedrock_client.py
+│   ├── ml/
 │   │   ├── classifier.py
 │   │   └── trainer.py
-│   └── repositories/           # JSON or DB-backed implementations
-│       ├── user_repo_json.py
-│       ├── product_repo_json.py
-│       └── gig_repo_json.py
+│   ├── repositories/
+│   │   └── user_repo_json.py
+│   ├── utils/
+│   │   └── content_filter.py
+│   └── vector_db/
+│       ├── chroma_client.py
+│       ├── gig_store.py
+│       ├── product_store.py
+│       ├── test.py
+│       ├── user_store.py
+│       └── vector_store_builder.py
 │
-├── interface/                  # FastAPI route definitions
+├── interface/
 │   ├── api/
-│   │   ├── onboarding.py
 │   │   ├── ask.py
-│   │   ├── recommend.py
-│   │   └── health.py
-│   └── schemas/                # Pydantic models for requests/responses
-│       ├── user_schema.py
-│       ├── product_schema.py
-│       ├── gig_schema.py
-│       └── onboarding_schema.py
+│   │   ├── health.py
+│   │   ├── metrics.py
+│   │   ├── onboarding.py
+│   │   └── recommend.py
+│   └── schemas/
+│       ├── onboarding_schema.py
+│       ├── query_schema.py
+│       └── recommendation_schema.py
 │
-├── tests/
-│   ├── unit/
-│   └── integration/
+├── logs/
+│   └── app.log
 │
-├── data/                       # JSON mock data
-│
-├── models/                     # Saved ML models
-│
-├── static/                     # Optional frontend UI
-│
-├── .env
-├── requirements.txt
-├── README.md
-└── pyproject.toml (optional)
+└── tests/
+    ├── integration/
+    └── unit/

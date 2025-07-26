@@ -13,9 +13,9 @@ chromadb
 sentence-transformers
 
 # ML
-scikit-learn
-pandas
-numpy
+scikit-learn~=1.7.1
+pandas~=2.3.1
+numpy~=2.3.1
 
 # Data validation
 pydantic~=2.11.7
@@ -33,3 +33,4 @@ langchain-core~=0.3.72
 langchain-community~=0.3.27
 langchain-aws~=0.2.29
 langgraph~=0.5.4
+joblib~=1.5.1

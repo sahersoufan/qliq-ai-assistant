@@ -1,12 +1,10 @@
 from typing import Dict
 
-from domain.services.store_registery import product_store, gig_store
-from infrastructure.repositories.user_repo_json import load_user_by_id
 from langchain_community.embeddings import SentenceTransformerEmbeddings
 
 from domain.services.embedding_formatter import user_to_text
-from infrastructure.vector_db.gig_store import build_gig_store
-from infrastructure.vector_db.product_store import build_product_store
+from domain.services.store_registery import product_store, gig_store
+from infrastructure.repositories.user_repo_json import load_user_by_id
 
 
 def recommend(user_id: str, top_k: int = 5) -> Dict[str, list]:
