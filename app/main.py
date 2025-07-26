@@ -6,23 +6,25 @@ from fastapi import FastAPI
 
 from infrastructure.logging import logger
 from infrastructure.vector_db.chroma_client import build_all_collections
-from interface.api import health, onboarding, ask, recommend, metrics
+from interface.api import health, onboarding, ask, recommend, metrics, classifier_comparison
 
 # Load environment variables
 load_dotenv()
+
 
 @asynccontextmanager
 async def lifespan(fastApi: FastAPI):
     build_all_collections()  # only once at startup
     yield
 
-app = FastAPI(title="QLIQ AI Assistant", lifespan=lifespan)
 
+app = FastAPI(title="QLIQ AI Assistant", lifespan=lifespan)
 
 # Register Routers
 app.include_router(health.router, prefix="/health", tags=["Health"])
 app.include_router(onboarding.router, prefix="/onboard", tags=["Onboarding"])
 app.include_router(ask.router, prefix="/ask", tags=["Ask"])
+app.include_router(classifier_comparison.router, prefix="/classifier-compare", tags=["classifier-compare"])
 app.include_router(recommend.router, prefix="/recommendations", tags=["Recommendations"])
 app.include_router(metrics.router, prefix="/metrics", tags=["Metrics"])
 
