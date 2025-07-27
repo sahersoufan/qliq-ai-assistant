@@ -130,6 +130,8 @@ These files are loaded into vector databases at application startup.
 When the backend is running, API documentation is available at:
 - **Swagger UI**: http://localhost:8000/docs
 - **ReDoc**: http://localhost:8000/redoc
+- **Postman Collection**: A Postman collection is available in the `docs` folder for testing the API endpoints
+- **Demo Video**: A demonstration video is available in the `docs` folder called `demo.mkv`
 
 ## 🧪 Testing
 
